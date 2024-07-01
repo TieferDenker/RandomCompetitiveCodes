@@ -9,9 +9,14 @@ public:
             return -1;
         if(needle.size()==0)
             return -1;
+        if(haystack.size()==needle.size())
+        {
+            if(haystack[0]!=needle[0])
+                return -1;
+        }
         int j,index,prev;
         bool flag,secflag;
-        for(int i=0;i<haystack.size()-needle.size();i++)
+        for(int i=0;i<haystack.size();i++)
         {
             j=0; flag=true; secflag=true;
             while(haystack[i]==needle[j])
@@ -22,6 +27,8 @@ public:
                     flag = false;
                 }
                 i++; j++;
+                if(j==needle.size())
+                    return index;
                 if(i>=haystack.size())
                     return -1;
                 if((haystack[i]==needle[0]) && secflag)
@@ -30,13 +37,8 @@ public:
                     secflag = false;
                 }
             }
-            if(j==needle.size())
-                return index;
-            else
-            {
-                if(!secflag)
-                    i=prev-1;
-            }
+            if(!secflag)
+                i=prev-1;
         }
         return -1;
     }
