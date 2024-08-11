@@ -59,11 +59,20 @@ int main()
     {
         int a1,a2,b1,b2;
         cin>>a1>>a2>>b1>>b2;
-        int first=0,sec=0;
-        if(a1>b1)
-        {
-            first++;
-            if(a2>b2)
-        }
+        int first=0,sec=0,round=0;
+        if(a1>b1)   first++;
+        else if(a1<b1)  sec++;
+        if(a2>b2)   first++;
+        else if(a2<b2)  sec++;
+        if(first>sec)
+            round++;
+        first=0,sec=0;
+        if(a1>b2)   first++;
+        else if(a1<b2)  sec++;
+        if(a2>b1)   first++;
+        else if(a2<b1)  sec++;
+        if(first>sec)
+            round++;
+        cout<<2*round<<"\n";
     }
 }
